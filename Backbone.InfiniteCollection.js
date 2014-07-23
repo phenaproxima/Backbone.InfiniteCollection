@@ -17,7 +17,7 @@ Backbone.InfiniteCollection = Backbone.Collection.extend({
       slice = slice.concat(this.slice(0, this.pageSize - slice.length));
     }
 
-    return slice;
+    return new Backbone.Collection(slice);
   },
 
   goBackward: function() {
