@@ -25,11 +25,15 @@ Backbone.InfiniteCollection = Backbone.Collection.extend({
     return this;
   },
 
-  previous: function() {
+  behind: function() {
     var slice = this.retreat().getPage();
     this.advance();
     return slice;
   },
+  
+  previous: function() {
+    return this.retreat().getPage();
+  }
 
   advance: function() {
     this._index += this.pageSize;
@@ -39,10 +43,14 @@ Backbone.InfiniteCollection = Backbone.Collection.extend({
     return this;
   },
 
-  next: function() {
+  ahead: function() {
     var slice = this.advance().getPage();
     this.retreat();
     return slice;
+  },
+  
+  next: function() {
+    return this.advance().getPage();
   }
 
 });
