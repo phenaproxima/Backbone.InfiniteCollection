@@ -33,7 +33,7 @@ Backbone.InfiniteCollection = Backbone.Collection.extend({
   
   previous: function() {
     return this.retreat().getPage();
-  }
+  },
 
   advance: function() {
     this._index += this.pageSize;
@@ -48,7 +48,7 @@ Backbone.InfiniteCollection = Backbone.Collection.extend({
     this.retreat();
     return slice;
   },
-  
+
   next: function() {
     return this.advance().getPage();
   }
