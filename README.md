@@ -31,7 +31,7 @@ needed.
 * ```behind()``` and ```ahead()``` will return the previous or next page, but *without* retreating or advancing
 the cursor.
 
-When cursor will always be set to 0 when the collection receives the ```reset``` event.
+The cursor is set to 0 when the collection receives the ```reset``` event.
 
 ```
 var collection = new Backbone.InfiniteCollection([
@@ -46,15 +46,18 @@ var collection = new Backbone.InfiniteCollection([
   { value: 9 },
   { value: 10 }
 ], { pageSize: 3 });
+
 collection.getPage(); // [{value: 1},{value: 2},{value: 3}]
-collection.previous();  // [{value: 10},{value: 9},{value: 8}]
-collection.next(); // [{value: 4},{value: 5},{value: 6}]
+collection.previous();  // [{value: 8},{value: 9},{value: 10}]
+collection.next(); // [{value: 1},{value: 2},{value: 3}]
 
 // Unlike previous() and next(), previous() and ahead() do not advance the cursor
 collection.ahead(); // [{value: 4},{value: 5},{value: 6}]
 collection.getPage(); // [{value: 1},{value: 2},{value: 3}]
+collection.next(); // [{value: 4},{value: 5},{value: 6}]
+collection.getPage(); // [{value: 4},{value: 5},{value: 6}]
 
 // next() and previous() are shorthand versions of these
-collection.advance().getPage(); // [{value: 4},{value: 5},{value: 6}]
-collection.retreat().getPage(); // [{value: 10},{value: 9},{value: 8}]
+collection.advance().getPage();
+collection.retreat().getPage();
 ```
