@@ -1,0 +1,23 @@
+{
+  "name": "Backbone.InfiniteCollection",
+  "main": "Backbone.InfiniteCollection.js",
+  "version": "0.1",
+  "homepage": "https://github.com/phenaproxima/Backbone.InfiniteCollection",
+  "authors": [
+    "Phéna Proxima <djphenaproxima@gmail.com>"
+  ],
+  "description": "An infinite-paging extension for Backbone Collections.",
+  "keywords": [
+    "Backbone",
+    "collections",
+    "pager",
+    "infinite"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "backbone": "~1.1.2"
+  },
+  "devDependencies": {
+    "qunit": "~1.15.0"
+  }
+}
