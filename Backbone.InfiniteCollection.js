@@ -17,7 +17,7 @@ Backbone.InfiniteCollection = Backbone.Collection.extend({
     return new Backbone.Collection(slice);
   },
 
-  goBackward: function() {
+  retreat: function() {
     this._index -= this.pageSize;
     if (this._index < 0) {
       this._index += this.length;
@@ -25,13 +25,13 @@ Backbone.InfiniteCollection = Backbone.Collection.extend({
     return this;
   },
 
-  lookBehind: function() {
-    var slice = this.goBackward().getPage();
-    this.goForward();
+  previous: function() {
+    var slice = this.retreat().getPage();
+    this.advance();
     return slice;
   },
 
-  goForward: function() {
+  advance: function() {
     this._index += this.pageSize;
     if (this._index >= this.length) {
       this._index -= this.length;
@@ -39,9 +39,9 @@ Backbone.InfiniteCollection = Backbone.Collection.extend({
     return this;
   },
 
-  lookAhead: function() {
-    var slice = this.goForward().getPage();
-    this.goBackward();
+  next: function() {
+    var slice = this.advance().getPage();
+    this.retreat();
     return slice;
   }
 

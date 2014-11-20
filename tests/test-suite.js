@@ -47,13 +47,13 @@ QUnit.test('increase page size to 3 and get the first page', function(assert) {
 
 QUnit.test('go backward', function(assert) {
 
-  assert.equal(collection.goBackward()._index, 8);
+  assert.equal(collection.retreat()._index, 8);
 
 });
 
 QUnit.test('look behind', function(assert) {
   
-  var page = collection.lookBehind();
+  var page = collection.previous();
   _assertPage(assert, page);
   assert.equal(collection._index, 0);
   assert.strictEqual(page.at(0), collection.at(8));
@@ -62,13 +62,13 @@ QUnit.test('look behind', function(assert) {
 
 QUnit.test('go forward', function(assert) {
   
-  assert.equal(collection.goForward()._index, 1);
+  assert.equal(collection.advance()._index, 1);
   
 });
 
 QUnit.test('look ahead', function(assert) {
 
-  var page = collection.lookAhead();
+  var page = collection.next();
   _assertPage(assert, page);
   assert.equal(collection._index, 0);
   assert.strictEqual(page.at(0), collection.at(1));
