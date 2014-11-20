@@ -1,7 +1,7 @@
 {
-  "name": "Backbone.InfiniteCollection",
+  "name": "backbone.infinite-collection",
   "main": "Backbone.InfiniteCollection.js",
-  "version": "0.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/phenaproxima/Backbone.InfiniteCollection",
   "authors": [
     "Phéna Proxima <djphenaproxima@gmail.com>"
