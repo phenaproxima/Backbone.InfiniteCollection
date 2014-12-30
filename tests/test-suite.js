@@ -111,3 +111,31 @@ QUnit.test('get next page', function(assert) {
   assert.strictEqual(page.at(2), collection.at(5));
   
 });
+
+QUnit.test('set index directly', function(assert) {
+
+  // Set an index within known bounds.
+  collection.setIndex(8);
+  assert.equal(collection._index, 8);
+
+  // Set indices that are out of bounds, but not recursive.
+  collection.setIndex(-2);
+  assert.equal(collection._index, 8);
+  
+  collection.setIndex(12);
+  assert.equal(collection._index, 2);
+  
+  // Set indices that are far out of bounds (corrected recursively).
+  collection.setIndex(30);
+  assert.equal(collection._index, 0);
+  
+  collection.setIndex(32);
+  assert.equal(collection._index, 2);
+  
+  collection.setIndex(-33);
+  assert.equal(collection._index, 7);
+  
+  collection.setIndex(-48);
+  assert.equal(collection._index, 2);
+
+});

@@ -25,11 +25,7 @@ Backbone.InfiniteCollection = Backbone.Collection.extend({
    * Retreats the index by pageSize, wrapping around to the end if needed.
    */
   retreat: function() {
-    this._index -= this.pageSize;
-    if (this._index < 0) {
-      this._index += this.length;
-    }
-    return this;
+    return this.setIndex(this._index - this.pageSize);
   },
 
   /**
@@ -52,11 +48,7 @@ Backbone.InfiniteCollection = Backbone.Collection.extend({
    * Advances the index by pageSize, wrapping around to the beginning if needed.
    */
   advance: function() {
-    this._index += this.pageSize;
-    if (this._index >= this.length) {
-      this._index -= this.length;
-    }
-    return this;
+    return this.setIndex(this._index + this.pageSize);
   },
 
   /**
@@ -74,6 +66,27 @@ Backbone.InfiniteCollection = Backbone.Collection.extend({
    */
   next: function() {
     return this.advance().getPage();
+  },
+  
+  /**
+   * Sets the index directly, wrapping it as needed.
+   *
+   * This method will recurse to handle indexes that are far out of range.
+   * If the collection has 8 items, for example, and given index is -24, it'll
+   * keep calling itself, altering the index each time until it's within bounds.
+   */
+  setIndex: function(index) {
+    if (index < 0) {
+      return this.setIndex(index + this.length);
+    }
+    else if (index >= this.length) {
+      return this.setIndex(index - this.length);
+    }
+    else {
+      this._index = index;
+    }
+
+    return this;
   }
 
 });
